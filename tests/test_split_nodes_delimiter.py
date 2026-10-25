@@ -5,7 +5,7 @@ from src.nodes.textnode.textnode import TextNode
 from src.nodes.utils.split_nodes_delimiter import split_nodes_delimiter
 
 
-class TestHTMLNode(unittest.TestCase):
+class TestSplitNodesDelimiter(unittest.TestCase):
     def test_delimiters(self):
         node_single = TextNode("lorem _ipsum_ dolor", TextType.TEXT)
         node_list_single = [node_single]

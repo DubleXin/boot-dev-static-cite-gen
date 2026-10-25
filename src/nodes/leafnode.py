@@ -12,7 +12,9 @@ class LeafNode(HTMLNode):
 
     def to_html(self) -> str:
         if not self.value:
-            raise ValueError(f"leaf node must have value that is not {type(None)}")
+            raise ValueError(
+                f"The value member of leaf node must be different from {type(None)}"
+            )
         if not self.tag:
             return self.value
         return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"

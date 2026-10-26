@@ -33,6 +33,6 @@ class TextNode:
             TextType.CODE: get_node("code"),
             TextType.LINK: LeafNode("a", text_node.text, {"href": text_node.url}),
             TextType.IMAGE: LeafNode(
-                "img", "", {"src": text_node.url, "alt": text_node.text}
+                "img", " ", {"src": text_node.url, "alt": text_node.text}
             ),
         }.get(text_node.text_type, None)

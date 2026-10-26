@@ -46,7 +46,7 @@ class TestTextNode(unittest.TestCase):
         )
         html_img_node = TextNode.text_node_to_html_node(img_node)
         self.assertEqual(html_img_node.tag, "img")
-        self.assertEqual(html_img_node.value, "")
+        self.assertEqual(html_img_node.value, " ")
         self.assertEqual(
             html_img_node.props,
             {

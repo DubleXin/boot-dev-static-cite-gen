@@ -1,7 +1,7 @@
 import unittest
 
-from src.nodes.utils.extract_images import extract_markdown_images
-from src.nodes.utils.extract_links import extract_markdown_links
+from src.nodes.utils.inline.extract_images import extract_markdown_images
+from src.nodes.utils.inline.extract_links import extract_markdown_links
 
 
 class TestExtractors(unittest.TestCase):

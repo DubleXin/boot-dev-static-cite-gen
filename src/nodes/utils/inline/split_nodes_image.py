@@ -1,9 +1,9 @@
 from src.nodes.textnode.text_type import TextType
 from src.nodes.textnode.textnode import TextNode
-from src.nodes.utils.extract_links import extract_markdown_links
+from src.nodes.utils.inline.extract_images import extract_markdown_images
 
 
-def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
+def split_nodes_image(old_nodes: list[TextNode]) -> list[TextNode]:
     if not old_nodes:
         return old_nodes
 
@@ -14,21 +14,21 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
             nodes.append(old_node)
             continue
 
-        all_links = extract_markdown_links(old_node.text)
+        all_images = extract_markdown_images(old_node.text)
 
-        if not all_links:
+        if not all_images:
             nodes.append(old_node)
             continue
 
         remaining_text = old_node.text
 
-        for text, link in all_links:
-            before, remaining_text = remaining_text.split(f"[{text}]({link})", 1)
+        for alt, link in all_images:
+            before, remaining_text = remaining_text.split(f"![{alt}]({link})", 1)
 
             if before:
                 nodes.append(TextNode(before, TextType.TEXT))
 
-            nodes.append(TextNode(text, TextType.LINK, link))
+            nodes.append(TextNode(alt, TextType.IMAGE, link))
 
         if remaining_text:
             nodes.append(TextNode(remaining_text, TextType.TEXT))

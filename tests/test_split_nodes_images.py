@@ -2,7 +2,7 @@ import unittest
 
 from src.nodes.textnode.text_type import TextType
 from src.nodes.textnode.textnode import TextNode
-from src.nodes.utils.split_nodes_image import split_nodes_image
+from src.nodes.utils.inline.split_nodes_image import split_nodes_image
 
 
 class TestSplitNodesImages(unittest.TestCase):

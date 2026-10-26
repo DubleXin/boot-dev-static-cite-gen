@@ -2,7 +2,7 @@ import unittest
 
 from src.nodes.textnode.text_type import TextType
 from src.nodes.textnode.textnode import TextNode
-from src.nodes.utils.split_nodes_link import split_nodes_link
+from src.nodes.utils.inline.split_nodes_link import split_nodes_link
 
 
 class TestSplitNodesLink(unittest.TestCase):

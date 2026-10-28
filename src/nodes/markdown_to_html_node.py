@@ -28,7 +28,7 @@ def _heading_to_html_node(block: str) -> ParentNode:
 
 
 def _quote_to_html_node(block: str) -> ParentNode:
-    content = "".join(line[1:] for line in block.split("\n"))
+    content = "\n".join(line[1:].lstrip() for line in block.split("\n"))
 
     return ParentNode("blockquote", get_leaf_nodes(content))
 

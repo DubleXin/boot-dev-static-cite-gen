@@ -45,7 +45,7 @@ class TestMarkdownToHtmlNode(unittest.TestCase):
         node = markdown_to_html_node("> First line\n> Second line")
 
         self.assertEqual(
-            "<main><blockquote> First line Second line</blockquote></main>",
+            "<main><blockquote>First line\nSecond line</blockquote></main>",
             node.to_html(),
         )
 

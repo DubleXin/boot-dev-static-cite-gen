@@ -1,5 +1,5 @@
 import os
-from os.path import exists
+from os.path import dirname, exists
 
 from src.bcolors import BColor
 from src.nodes.markdown_to_html_node import markdown_to_html_node
@@ -13,10 +13,6 @@ def generate_page(from_path: str, template_path: str, dest_path: str) -> None:
     if not exists(f"{from_path}"):
         raise ValueError(
             f"Tnvalid path of the markdown file. Path does not exists. Actual argument is: {from_path}"
-        )
-    if not exists(f"{template_path}"):
-        raise ValueError(
-            f"Tnvalid path of the template file. Path does not exists. Actual argument is: {template_path}"
         )
 
     markdown_content: str = ""
@@ -35,7 +31,7 @@ def generate_page(from_path: str, template_path: str, dest_path: str) -> None:
 
     document = "".join([content_splited[0], html_content, content_splited[1]])
 
-    os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+    os.makedirs(dirname(dest_path), exist_ok=True)
 
     with open(dest_path, "w") as f:
         f.write(document)

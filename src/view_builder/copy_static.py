@@ -1,6 +1,6 @@
 import os
 import shutil
-from os.path import exists, join
+from os.path import exists, isfile, join
 
 
 def copy_static(parent_dir: str):
@@ -29,7 +29,7 @@ def _copy_rec(current_path: str, source_root: str, target_root: str) -> None:
         current_path,
     )
     for dir in os.listdir(source_path):
-        if os.path.isfile(os.path.join(source_path, dir)):
+        if isfile(join(source_path, dir)):
             shutil.copy(
                 join(source_root, current_path, dir),
                 join(target_root, current_path, dir),

@@ -1,7 +1,9 @@
 from src.bcolors import BColor as bc
 from src.view_builder.copy_static import copy_static
 from src.view_builder.delete_public import delete_public
-from src.view_builder.generate_page import generate_page
+from src.view_builder.page_generator.generate_pages_recursive import (
+    generate_pages_recursive as gen,
+)
 
 root_path = "."
 
@@ -18,7 +20,8 @@ except ValueError as err:
     )
 
 try:
-    generate_page("./content/index.md", "./template.html", "./public/index.html")
+    # generate_page("./content/index.md", "./template.html", "./public/index.html")
+    gen("./content", "./template.html", "./public")
 except ValueError as err:
     print(
         f"{bc.WARNING}Failed to generate pages form content{bc.ENDC}\n{bc.FAIL}Actual error: {err}{bc.ENDC}"

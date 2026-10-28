@@ -6,7 +6,9 @@ from src.nodes.markdown_to_html_node import markdown_to_html_node
 from src.view_builder.utils.extract_title import extract_title
 
 
-def generate_page(from_path: str, template_path: str, dest_path: str) -> None:
+def generate_page(
+    from_path: str, template_path: str, dest_path: str, basepath="/"
+) -> None:
     print(
         f"Generating page from {BColor.BOLD}{from_path}{BColor.ENDC} to {BColor.BOLD}{dest_path}{BColor.ENDC} using {BColor.BOLD}{template_path}{BColor.ENDC}"
     )
@@ -25,12 +27,12 @@ def generate_page(from_path: str, template_path: str, dest_path: str) -> None:
     html_content = markdown_to_html_node(markdown_content).to_html()
     document_title = extract_title(markdown_content)
 
-    title_splited = template_content.split("{{ Title }}", 1)
-    template_content = "".join([title_splited[0], document_title, title_splited[1]])
-    content_splited = template_content.split("{{ Content }}", 1)
-
-    document = "".join([content_splited[0], html_content, content_splited[1]])
-
+    document = (
+        template_content.replace("{{ Title }}", document_title, 1)
+        .replace("{{ Content }}", html_content, 1)
+        .replace('href="/', f'href="{basepath}')
+        .replace('src="/', f'src="{basepath}')
+    )
     os.makedirs(dirname(dest_path), exist_ok=True)
 
     with open(dest_path, "w") as f:

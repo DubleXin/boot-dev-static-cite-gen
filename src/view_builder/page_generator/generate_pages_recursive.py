@@ -5,7 +5,7 @@ from src.view_builder.page_generator.generate_page import generate_page
 
 
 def generate_pages_recursive(
-    dir_path_content: str, template_path: str, dest_dir_path: str
+    dir_path_content: str, template_path: str, dest_dir_path: str, basepath="/"
 ) -> None:
     if not exists(f"{template_path}"):
         raise ValueError(
@@ -21,8 +21,9 @@ def generate_pages_recursive(
                 join(dir_path_content, v),
                 template_path,
                 join(dest_dir_path, f"{v[:-3]}.html"),
+                basepath,
             )
             continue
         generate_pages_recursive(
-            join(dir_path_content, v), template_path, join(dest_dir_path, v)
+            join(dir_path_content, v), template_path, join(dest_dir_path, v), basepath
         )

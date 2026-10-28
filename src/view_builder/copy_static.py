@@ -3,13 +3,13 @@ import shutil
 from os.path import exists, isfile, join
 
 
-def copy_static(parent_dir: str):
+def copy_static(parent_dir: str, public_dir: str = "public"):
     if not exists(f"{parent_dir}"):
         raise ValueError(
             f"Tnvalid parent directory. Path does not exists. Actual argument is: {parent_dir}"
         )
     path_to_static = join(parent_dir, "static")
-    path_to_target = join(parent_dir, "public")
+    path_to_target = join(parent_dir, public_dir)
     if not exists(path_to_static):
         raise ValueError(
             f'The "static" directory is missing from the parent directory (the "parent_dir" argument). '
